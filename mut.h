@@ -48,7 +48,7 @@
     void __sig_handler(int sig)                                                \
     {                                                                          \
         __veredict__ = __V_FAILED__;                                           \
-        printf("Error: Test \"%s\" produced a Segmentation Fault!\n",          \
+        printf("Error: Test \"%s\" caused a Segmentation Fault!\n",            \
             __current_test_name__);                                            \
         printf("-- Testsuite FAILED --\n");                                    \
         exit(1);                                                               \
@@ -61,7 +61,7 @@
 
 
 #define TESTSUITE_END                                                          \
-__testsuite_end__:                                                             \
+    __testsuite_end__:                                                         \
         if(__veredict__ == __V_UNDEFINED__)                                    \
         {                                                                      \
             printf("-- Testsuite PASSED, %d out of %d tests run --\n",         \
@@ -78,20 +78,26 @@ __testsuite_end__:                                                             \
 
 
 
-#define TEST_BEGIN(__test_name__)                                              \
+#define TEST_DISABLE goto __test_end_disabled__;
+
+
+
+#define TEST_BEGIN (__test_name__)                                             \
         {                                                                      \
             __label__ __test_end__;                                            \
+            __label__ __test_end_disabled__;                                   \
             __current_test_name__ = __test_name__;                             \
             __total_tests__++;                                                 \
                                                                                \
             if (__veredict__ == __V_UNDEFINED__)                               \
             {                                                                  \
-                __tests_run__++;
 
 
 
 #define TEST_END                                                               \
         __test_end__:                                                          \
+            __tests_run__++;                                                   \
+        __test_end_disabled__:                                                 \
             ;                                                                  \
             }                                                                  \
         }

@@ -82,7 +82,7 @@
 
 
 
-#define TEST_BEGIN (__test_name__)                                             \
+#define TEST_BEGIN(__test_name__)                                              \
         {                                                                      \
             __label__ __test_end__;                                            \
             __label__ __test_end_disabled__;                                   \
@@ -114,6 +114,14 @@
 
 #define CHECK(__assertion__)                                                   \
     if ( !(__assertion__) )                                                    \
+    {                                                                          \
+        __ASSERTION_FAILED__                                                   \
+    }
+
+
+
+#define FAIL_IF(__assertion__)                                                 \
+    if (__assertion__)                                                         \
     {                                                                          \
         __ASSERTION_FAILED__                                                   \
     }

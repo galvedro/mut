@@ -25,12 +25,14 @@
 __testsuite_end__: \
         if(__veredict__ == UNDEFINED) \
         { \
-            printf("-- Testsuite PASSED, %d tests run --\n", __tests_run__); \
+            printf("-- Testsuite PASSED, %d out of %d tests run --\n", \
+                __tests_run__, __total_tests__); \
             return 0; \
         } \
         else \
         { \
-            printf("-- Testsuite FAILED, %d tests run --\n", __tests_run__); \
+            printf("-- Testsuite FAILED, %d out of %d tests run --\n", \
+                __tests_run__, __total_tests__); \
             return 1; \
         } \
     }
@@ -38,22 +40,27 @@ __testsuite_end__: \
 
 
 #define TEST_BEGIN(__test_name__) \
-        __total_tests__++; \
-        \
-        if (__veredict__ == UNDEFINED) \
         { \
-            __tests_run__++;
+            __label__ __test_end__; \
+            __total_tests__++; \
+            \
+            if (__veredict__ == UNDEFINED) \
+            { \
+                __tests_run__++;
 
 
 
 #define TEST_END \
+        __test_end__: \
+            ; \
+            } \
         }
 
 
 #define __ASSERTION_FAILED__ \
         __veredict__ = FAILED; \
         printf("ERROR: Assertion failed at line %d\n", __LINE__); \
-        goto __testsuite_end__;
+        goto __test_end__;
 
 
 

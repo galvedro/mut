@@ -1,7 +1,7 @@
 /* -------------------------------------------------------------------------- */
 /*                                                                            */
 /*                         Micro Unit Testing Framework                       */
-/*                       Copyright (c) 2009, Anton Gomez                      */
+/*                    Copyright (c) 2009, Anton Gomez Alvedro                 */
 /*                                                                            */
 /* 1. LICENSE                                                                 */
 /*                                                                            */

@@ -1,8 +1,8 @@
 # Mut: a micro unit-testing framework
 
-Mut is minimalistic unit testing framework for C/Unix. It is designed to
+Mut is a minimalistic unit testing framework for C/Unix. It is designed to
 fulfill the unit testing needs of a small library project, when the hassle of
-integrating a full featured framework with its dependencies may not be justified.
+integrating a more complete framework with its dependencies may not be justified.
 
 It offers:
 
@@ -12,7 +12,7 @@ It offers:
 * Basic reporting: fail/pass status and test case counters.
 
 Mut is provided as a single header file to simplify integration. Just some
-simple build rules in your makefiles will get you going.
+basic build rules in your makefiles will get you going.
 
 ## Limitations
 
@@ -49,7 +49,7 @@ TEST_END
 TESTSUITE_END
 ```
 
-First of all: test code is written in regular C.
+Test code is written in regular C.
 
 `TESTSUITE_BEGIN` and `TESTSUITE_END` macros are required and provide a main
 C function with the necessary structure to execute your tests and report
